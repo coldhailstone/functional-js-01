@@ -1,7 +1,6 @@
 ## 기존과 달라진 ES6에서의 리스트 순회
   - for i++
   - for of
-
 <script>
   const list = [1, 2, 3];
   for (var i = 0; i < list.length; i++) {
@@ -21,6 +20,7 @@
 
 ### Array를 통해 알아보기
 <script>
+  console.clear();
   console.log('Arr ------------');
   const arr = [1, 2, 3];
   for (const a of arr) {
@@ -52,8 +52,8 @@
   - 이터러블/이터레이터 프로토콜: 이터러블을 for...of, 전개 연산자 등과 함께 동작하도록한 규약
 
 ### 사용자 정의 이터러블을 통해 알아보기
-
 <script>
+  console.clear();
   console.log('customize iterable ------------');
   const iterable = {
     [Symbol.iterator]() {
@@ -92,4 +92,11 @@
   console.log(iter3.next());
   console.log(iter3.next());
   console.log(iter3.next());
+</script>
+
+## 전개 연산자
+<script>
+  console.clear();
+  const a = [1, 2];
+  console.log([...a, ...arr, ...set, ...map.values()]);
 </script>
