@@ -49,6 +49,23 @@
         prices => reduce(add, prices),
         log
     );
+
+    go(
+        products,
+        filter(p => p.price < 20000),
+        map(p => p.price),
+        reduce(add),
+        log
+    );
 </script>
 
 ## curry
+<script>
+    const mult = curry((a, b) => a * b);
+    log(mult(3)(2));
+
+    const mult3 = mult(3);
+    log(mult3(10));
+    log(mult3(5));
+    log(mult3(3));
+</script>
