@@ -54,6 +54,15 @@
 
     // 이렇게 써도 되지 않나?
     console.log(Array.from(gen()).map(a => a * a));
+
+    let m = new Map();
+    m.set('a', 10);
+    m.set('b', 20);
+    const it = m[Symbol.iterator]();
+    console.log(new Map(map(([k, a]) => [k, a * 2], m)));
+
+    // 이렇게 써도 되지 않나?
+    console.log(new Map(Array.from(m).map(([k, a]) => [k, a * 2])));
 </script>
 
 # filter
