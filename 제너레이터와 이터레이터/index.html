@@ -1,0 +1,22 @@
+# 제너레이터/이레터
+- 제너레이터: 이터레이터이자 이터러블을 생성하는 함수
+
+<script>
+    function *gen() {
+        yield 1;
+        if (false) yield 2;
+        yield 3;
+        return 100;
+    }
+
+    let iter = gen();
+    console.log(iter[Symbol.iterator]() === iter);  // well-formed
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+    console.log(iter.next());
+
+    for (const a of gen()) {
+        console.log(a);
+    }
+</script>
