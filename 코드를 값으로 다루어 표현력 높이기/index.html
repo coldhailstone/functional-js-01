@@ -40,4 +40,15 @@
     log(f(0, 1));
 </script>
 
+# go를 사용하여 읽기 좋은 코드로 만들기
+<script>
+    go(
+        products,
+        products => filter(p => p.price < 20000, products),
+        products => map(p => p.price, products),
+        prices => reduce(add, prices),
+        log
+    );
+</script>
+
 ## curry
