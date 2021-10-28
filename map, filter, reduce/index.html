@@ -33,8 +33,29 @@
     // console.log(prices);
 
     console.log(map(p => p.price, products));
+    console.clear();
 </script>
 
 # 이터러블 프로토콜을 따른 map의 다형성
+<script>
+    // console.log(document.querySelectorAll('*').map(el => el.nodeName));
+
+    console.log(map(el => el.nodeName, document.querySelectorAll('*')));
+
+    // 이렇게 써도 되지 않나?
+    console.log(Array.from(document.querySelectorAll('*')).map(el => el.nodeName));
+
+    function *gen() {
+        yield 2;
+        if (false) yield 3;
+        yield 4;
+    }
+    console.log(map(a => a * a, gen()));
+
+    // 이렇게 써도 되지 않나?
+    console.log(Array.from(gen()).map(a => a * a));
+</script>
 
 # filter
+
+# reduce
