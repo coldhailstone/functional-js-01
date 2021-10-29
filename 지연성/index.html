@@ -42,4 +42,25 @@
 
     test('range', 10, () => reduce(add, range(1000000)));
     test('L.range', 10, () => reduce(add, L.range(1000000)));
+    console.clear();
+</script>
+
+## take
+<script>
+    const take = (l, iter) => {
+        let res = [];
+        for (const a of iter) {
+            res.push(a);
+            if (res.length == l) return res;
+        }
+        return res;
+    }
+
+    console.time('range');
+    log(take(5, range(10000)));
+    console.timeEnd('range');
+
+    console.time('L.range');
+    log(take(5, L.range(Infinity)));
+    console.timeEnd('L.range');
 </script>
