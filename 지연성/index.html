@@ -63,4 +63,22 @@
     console.time('L.range');
     log(take(5, L.range(Infinity)));
     console.timeEnd('L.range');
+    console.clear();
+</script>
+
+# 이터러블 중심 프로그램에서의 지연 평가 (Lazy Evaluation)
+  - 제때 계산법
+  - 느긋한 계산법
+  - 제너레이터/이터레이터 프로토콜을 기반으로 구현
+
+## L.map
+<script>
+  L.map = function *(f, iter) {
+      for (const a of iter) yield f(a);
+  };
+  let it = L.map(a => a + 10, [1, 2, 3]);
+  log(it.next());
+  log(it.next());
+  log(it.next());
+  log(it.next());
 </script>
