@@ -20,13 +20,13 @@
 
 ## 느긋한 L.range
 <script>
-    const L = {};
-    L.range = function *(l) {
-        let i = -1;
-        while (++i < l) {
-            yield i;
-        }
-    };
+    // const L = {};
+    // L.range = function *(l) {
+    //     let i = -1;
+    //     while (++i < l) {
+    //         yield i;
+    //     }
+    // };
 
     let list2 = L.range(4);
     log(list2);
@@ -47,14 +47,14 @@
 
 ## take
 <script>
-    const take = (l, iter) => {
-        let res = [];
-        for (const a of iter) {
-            res.push(a);
-            if (res.length == l) return res;
-        }
-        return res;
-    }
+    // const take = (l, iter) => {
+    //     let res = [];
+    //     for (const a of iter) {
+    //         res.push(a);
+    //         if (res.length == l) return res;
+    //     }
+    //     return res;
+    // }
 
     console.time('range');
     log(take(5, range(10000)));
@@ -73,23 +73,23 @@
 
 ## L.map
 <script>
-  L.map = function *(f, iter) {
-      for (const a of iter) yield f(a);
-  };
-  let it = L.map(a => a + 10, [1, 2, 3]);
-  log(it.next());
-  log(it.next());
-  log(it.next());
-  log(it.next());
+    // L.map = function *(f, iter) {
+    //     for (const a of iter) yield f(a);
+    // };
+    let it = L.map(a => a + 10, [1, 2, 3]);
+    log(it.next());
+    log(it.next());
+    log(it.next());
+    log(it.next());
 </script>
 
 ## L.filter
 <script>
-    L.filter = function *(f, iter) {
-      for (const a of iter) if (f(a)) yield a;
-  };
-  let it2 = L.filter(a => a % 2, [1, 2, 3, 4]);
-  log(it2.next());
-  log(it2.next());
-  log(it2.next());
+    // L.filter = function *(f, iter) {
+    //     for (const a of iter) if (f(a)) yield a;
+    // };
+    let it2 = L.filter(a => a % 2, [1, 2, 3, 4]);
+    log(it2.next());
+    log(it2.next());
+    log(it2.next());
 </script>
