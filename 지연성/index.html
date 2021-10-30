@@ -82,3 +82,14 @@
   log(it.next());
   log(it.next());
 </script>
+
+## L.filter
+<script>
+    L.filter = function *(f, iter) {
+      for (const a of iter) if (f(a)) yield a;
+  };
+  let it2 = L.filter(a => a % 2, [1, 2, 3, 4]);
+  log(it2.next());
+  log(it2.next());
+  log(it2.next());
+</script>
