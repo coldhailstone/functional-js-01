@@ -2,6 +2,7 @@
 
 ## L.range, L.map, L.filter, take, reduce 중첩 사용
 <script>
+    console.time('1');
     go(
         range(10),
         map(n => n + 10),
@@ -9,4 +10,15 @@
         take(2),
         log
     );
+    console.timeEnd('1');
+
+    console.time('2');
+    go(
+        L.range(10),
+        L.map(n => n + 10),
+        L.filter(n => n % 2),
+        take(2),
+        log
+    );
+    console.timeEnd('2');
 </script>
