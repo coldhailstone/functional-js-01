@@ -43,4 +43,22 @@
 
     const n2 = delay100(10);
     log(go1(go1(n2, add5), log));
+    console.clear();
+</script>
+
+## Composition
+<script>
+    const g = a => a + 1;
+    const f = a => a * a;
+
+    log(f(g(1)));
+    log(f(g()));
+
+    Array.of(1).map(g).map(f).forEach(r => log(r));
+    [].map(g).map(f).forEach(r => log(r));
+
+    Promise.resolve(1).then(g).then(f).then(r => log(r));
+    new Promise(resolve => {
+        setTimeout(() => resolve(2), 100)
+    }).then(g).then(f).then(r => log(r));
 </script>
