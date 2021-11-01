@@ -37,14 +37,28 @@
 
 ### reduce
 <script>
-    const queryStr = obj => go(
-        obj,
+    const queryStr = pipe(
+        L.entries,
+        L.map(([k, v]) => `${k}=${v}`),
+        join('&')
+    );
+
+    const queryStr2 = pipe(
         Object.entries,
         map(([k, v]) => `${k}=${v}`),
-        reduce((a, b) => `${a}&${b}`)
+        join('&')
     );
-    
+
     log(queryStr({ limit: 10, offset: 10, type: 'notice' }));
+
+    function *a() {
+        yield 10;
+        yield 11;
+        yield 12;
+        yield 13;
+    }
+
+    log(join('-', a()));
 </script>
 
 ### take, find
