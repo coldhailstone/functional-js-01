@@ -8,19 +8,23 @@
         setTimeout(() => callback(a + 10), 100);
     }
 
-    add10(5, res => {
+    let a = add10(5, res => {
         add10(res, res => {
             log(res);
         });
     });
 
+    log(a);
+
     function add20(a) {
         return new Promise(resolve => setTimeout(() => resolve(a + 20), 100));
     }
 
-    add20(5)
+    let b = add20(5)
         .then(add20)
         .then(log);
+        
+    log(b);
 </script>
 
 ## 일급 활용
