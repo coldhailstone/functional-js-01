@@ -22,11 +22,15 @@
 
     L.flatten = function *(iter) {
         for (const a of iter) {
-            if (isIterable(a)) {
-                for (const b of a) yield b;
-            } else {
-                yield a;
-            }
+            // if (isIterable(a)) {
+            //     for (const b of a) yield b;
+            // } else {
+            //     yield a;
+            // }
+
+            // yield *a == for (const b of a) yield b;
+            if (isIterable(a)) yield *a 
+            else yield a;
         }
     }
 
