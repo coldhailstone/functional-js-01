@@ -11,4 +11,28 @@
     const filter2 = curry(pipe(L.filter, takeAll));
 
     log(filter2(a => a % 2, L.range(4)));
+    console.clear();
+</script>
+
+## L.flatten
+<script>
+    log([...[1, 2], 3, 4, ...[5, 6], ...[7, 8, 9]]);
+
+    const isIterable = a => a && a[Symbol.iterator];
+
+    L.flatten = function *(iter) {
+        for (const a of iter) {
+            if (isIterable(a)) {
+                for (const b of a) yield b;
+            } else {
+                yield a;
+            }
+        }
+    }
+
+    let it = L.flatten([[1, 2], 3, 4, [5, 6], [7, 8, 9]]);
+    log([...it]);
+
+    const flatten = pipe(L.flatten, takeAll);
+    log(flatten([[1, 2], 3, 4, [5, 6], [7, 8, 9]]));
 </script>
