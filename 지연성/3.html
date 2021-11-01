@@ -1,0 +1,14 @@
+<script src="../lib/fx.js"></script>
+
+## L.map + take로 map 만들기
+<script>
+    const takeAll = take(Infinity);
+
+    const map2 = curry(pipe(L.map, takeAll));
+
+    log(map2(a => a + 10, L.range(4)));
+
+    const filter2 = curry(pipe(L.filter, takeAll));
+
+    log(filter2(a => a % 2, L.range(4)));
+</script>
