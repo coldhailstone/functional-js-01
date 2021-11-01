@@ -39,4 +39,21 @@
 
     const flatten = pipe(L.flatten, takeAll);
     log(flatten([[1, 2], 3, 4, [5, 6], [7, 8, 9]]));
+    console.clear();
+</script>
+
+## L.flatMap
+<script>
+    // log([[1, 2], [3, 4], [5, 6, 7], 8, 9, [10]].flatMap(a => a));
+    // log([[1, 2], [3, 4], [5, 6, 7], [10]].flatMap(a => a.map(a => a * a)));
+    // log(flatten([[1, 2], [3, 4], [5, 6, 7], [10]].map(a => a.map(a => a * a))));
+
+    L.flatMap = curry(pipe(L.map, L.flatten));
+    const flatMap = curry(pipe(L.map, flatten));
+
+    let it2 = L.flatMap(a => a, [[1, 2], [3, 4], [5, 6, 7], [10]]);
+    log([...it2]);
+    log(flatMap(a => a, [[1, 2], [3, 4], [5, 6, 7], [10]]));
+
+    log(flatMap(range, [1, 2, 3]));
 </script>
