@@ -42,6 +42,10 @@
         L.map(([k, v]) => `${k}=${v}`),
         join('&')
     );
+    
+    console.time('c');
+    log(queryStr({ limit: 10, offset: 10, type: 'notice' }));
+    console.timeEnd('c');
 
     const queryStr2 = pipe(
         Object.entries,
@@ -49,7 +53,9 @@
         join('&')
     );
 
-    log(queryStr({ limit: 10, offset: 10, type: 'notice' }));
+    console.time('d');
+    log(queryStr2({ limit: 10, offset: 10, type: 'notice' }));
+    console.timeEnd('d');
 
     function *a() {
         yield 10;
@@ -59,9 +65,49 @@
     }
 
     log(join('-', a()));
+    console.clear();
 </script>
 
 ### take, find
 <script>
+    const users = [
+        { age: 32 },
+        { age: 35 },
+        { age: 31 },
+        { age: 37 },
+        { age: 28 },
+        { age: 25 },
+        { age: 32 },
+        { age: 31 },
+        { age: 37 }
+    ];
 
+    const find = curry((f, iter) => go(
+        iter,
+        L.filter(f),
+        take(1),
+        ([a]) => a
+    ));
+
+    console.time('a');
+    log(find(u => u.age < 30, users));
+    console.timeEnd('a');
+
+    const find2 = (f, iter) => go(
+        iter,
+        filter(f),
+        take(1),
+        ([a]) => a
+    );
+
+    console.time('b');
+    log(find2(u => u.age < 30, users));
+    console.timeEnd('b');
+
+    go(
+        users,
+        L.map(u => u.age),
+        find(n => n < 30),
+        log
+    )
 </script>
