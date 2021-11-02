@@ -62,3 +62,35 @@
         setTimeout(() => resolve(2), 100)
     }).then(g).then(f).then(r => log(r));
 </script>
+
+## Kleisli Composition
+<script>
+    // f(g(x)) = f(g(x))
+    // f(g(x)) = g(x)
+
+    let users = [
+        { id: 1, name: 'aa' },
+        { id: 2, name: 'bb' },
+        { id: 3, name: 'cc' }
+    ];
+
+    const getUserById = id => 
+        find(u => u.id == id, users) || Promise.reject('없어요!');
+
+    const f2 = ({name}) => name;
+    const g2 = getUserById;
+
+    // const fg = id => f2(g2(id));
+
+    // const r3 = fg(2);
+    // log(r3);
+
+    // users.pop();
+    // users.pop();
+
+    // const r4 = fg(2);
+    // log(r4);
+
+    const fg = id => Promise.resolve(id).then(g2).then(f2).catch(a => a);
+    fg(2).then(log);
+</script>
