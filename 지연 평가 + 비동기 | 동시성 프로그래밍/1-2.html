@@ -16,6 +16,12 @@
 
     C.take = curry((l, iter) => take(l, catchNoop([...iter])));
 
+    C.takeAll = C.take(Infinity);
+
+    C.map = curry(pipe(L.map, C.takeAll));
+
+    C.filter = curry(pipe(L.filter, C.takeAll));
+
     const delay500 = a => new Promise(resolve =>
         setTimeout(() => resolve(a), 500));
 
@@ -30,4 +36,10 @@
         log,
         _ => console.timeEnd('')
     );
+</script>
+
+## 즉시 병렬적으로 평가하기 - C.map, C.filter
+<script>
+    C.map(a => delay500(a * a), [1, 2, 3, 4]).then(log);
+    C.filter(a => delay500(a % 2), [1, 2, 3, 4]).then(log);
 </script>
