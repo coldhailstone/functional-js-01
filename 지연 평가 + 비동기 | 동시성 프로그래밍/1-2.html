@@ -43,3 +43,18 @@
     C.map(a => delay500(a * a), [1, 2, 3, 4]).then(log);
     C.filter(a => delay500(a % 2), [1, 2, 3, 4]).then(log);
 </script>
+
+## 즉시, 지연, Promise, 병렬적 조합하기
+<script>
+    console.time('f');
+    go(
+        [1, 2, 3, 4, 5, 7, 8],
+        L.map(a => delay500(a * a)),
+        L.filter(a => delay500(a % 2)),
+        L.map(a => delay500(a * a)),
+        C.take(2),
+        // C.reduce(add),
+        log,
+        _ => console.timeEnd('f')
+    );
+</script>
