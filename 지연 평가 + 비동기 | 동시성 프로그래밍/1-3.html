@@ -1,0 +1,21 @@
+<script src="../lib/fx.js"></script>
+
+## async/await
+<script>
+  function delay(time) {
+    return new Promise(resolve => setTimeout(() => resolve(a), time));
+  }
+  
+  async function delayIdentity(a) {
+    await delay(500);
+    return a;
+  }
+  
+  async function f1() {
+    const a = await delayIdentity(10);
+    const b = await delayIdentity(5);
+    
+    log(a + b);
+  }
+  f1();
+</script>
